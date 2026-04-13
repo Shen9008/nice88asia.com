@@ -1,0 +1,18 @@
+# Nice88 Asia - robots.txt
+# https://www.nice88asia.com
+# Ensure no paths are blocked - fixes "Blocked by robots.txt" indexing issues
+
+User-agent: *
+Allow: /
+Allow: /news/
+Allow: /slots.html
+Allow: /live-casino.html
+Allow: /table-games.html
+Allow: /sports-betting.html
+Allow: /payments.html
+Allow: /mobile-app.html
+Allow: /about-us.html
+Allow: /faq.html
+
+# Sitemap location (required for search engines)
+Sitemap: https://www.nice88asia.com/sitemap.xml

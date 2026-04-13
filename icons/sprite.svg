@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <!-- Lock/Shield -->
+  <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+  </symbol>
+  
+  <!-- Checkmark -->
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  
+  <!-- Money/Wallet -->
+  <symbol id="icon-money" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="12" y1="1" x2="12" y2="23"/>
+    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+  </symbol>
+  
+  <!-- Gamepad -->
+  <symbol id="icon-gamepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="6" y1="12" x2="10" y2="12"/>
+    <line x1="8" y1="10" x2="8" y2="14"/>
+    <line x1="15" y1="13" x2="15.01" y2="13"/>
+    <line x1="18" y1="11" x2="18.01" y2="11"/>
+    <rect x="2" y="6" width="20" height="12" rx="2"/>
+  </symbol>
+  
+  <!-- Football -->
+  <symbol id="icon-football" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 2v20M2 12h20"/>
+    <path d="M6.34 6.34l11.32 11.32M17.66 6.34L6.34 17.66"/>
+  </symbol>
+  
+  <!-- Basketball -->
+  <symbol id="icon-basketball" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 2v20M2 12h20"/>
+    <path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
+  </symbol>
+  
+  <!-- Tennis -->
+  <symbol id="icon-tennis" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="2" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+  </symbol>
+  
+  <!-- Esports/Gaming -->
+  <symbol id="icon-esports" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+    <line x1="8" y1="21" x2="16" y2="21"/>
+    <line x1="12" y1="17" x2="12" y2="21"/>
+  </symbol>
+  
+  <!-- Cricket -->
+  <symbol id="icon-cricket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="2" x2="12" y2="6"/>
+    <line x1="12" y1="18" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="6" y2="12"/>
+    <line x1="18" y1="12" x2="22" y2="12"/>
+  </symbol>
+  
+  <!-- MMA/Boxing -->
+  <symbol id="icon-mma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M8 12h8M12 8v8"/>
+  </symbol>
+  
+  <!-- Trophy -->
+  <symbol id="icon-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M6 9H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2"/>
+    <path d="M18 9h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/>
+    <path d="M6 9V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
+    <path d="M6 13v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4"/>
+    <line x1="12" y1="9" x2="12" y2="13"/>
+  </symbol>
+  
+  <!-- Phone -->
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </symbol>
+  
+  <!-- Menu/Hamburger -->
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+  </symbol>
+  
+  <!-- Plus -->
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="12" y1="5" x2="12" y2="19"/>
+    <line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  
+  <!-- Star -->
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </symbol>
+  
+  <!-- Book -->
+  <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </symbol>
+  
+  <!-- News -->
+  <symbol id="icon-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+    <path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/>
+  </symbol>
+  
+  <!-- Gift -->
+  <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="3" y="8" width="18" height="4"/>
+    <rect x="3" y="12" width="18" height="8"/>
+    <path d="M12 8v12M12 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zM12 8c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z"/>
+  </symbol>
+  
+  <!-- Heart -->
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </symbol>
+  
+  <!-- Lightning -->
+  <symbol id="icon-lightning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </symbol>
+  
+  <!-- Chart -->
+  <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="18" y1="20" x2="18" y2="10"/>
+    <line x1="12" y1="20" x2="12" y2="4"/>
+    <line x1="6" y1="20" x2="6" y2="14"/>
+  </symbol>
+  
+  <!-- TV/Live -->
+  <symbol id="icon-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+    <polyline points="17 2 12 7 7 2"/>
+  </symbol>
+  
+  <!-- Cards -->
+  <symbol id="icon-cards" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="1" y="4" width="20" height="16" rx="2" ry="2"/>
+    <line x1="1" y1="10" x2="21" y2="10"/>
+  </symbol>
+  
+  <!-- Crown -->
+  <symbol id="icon-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M5 15l-1-4 4-2 2-4 2 4 4 2-1 4H5z"/>
+    <path d="M12 15v6M3 15h18"/>
+  </symbol>
+  
+  <!-- Sparkles -->
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+    <circle cx="12" cy="12" r="2"/>
+    <path d="M6.34 6.34l2.83 2.83M14.83 14.83l2.83 2.83M17.66 6.34l-2.83 2.83M9.17 14.83l-2.83 2.83"/>
+  </symbol>
+  
+  <!-- Mobile -->
+  <symbol id="icon-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+    <line x1="12" y1="18" x2="12.01" y2="18"/>
+  </symbol>
+  
+  <!-- Party -->
+  <symbol id="icon-party" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M6.34 6.34l2.83 2.83M14.83 14.83l2.83 2.83M17.66 6.34l-2.83 2.83M9.17 14.83l-2.83 2.83"/>
+  </symbol>
+  
+  <!-- Live Casino -->
+  <symbol id="icon-live" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+  </symbol>
+  
+  <!-- Roulette -->
+  <symbol id="icon-roulette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="2"/>
+    <line x1="12" y1="2" x2="12" y2="10"/>
+  </symbol>
+  
+  <!-- Dice -->
+  <symbol id="icon-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <circle cx="8" cy="8" r="1.5"/>
+    <circle cx="16" cy="16" r="1.5"/>
+    <circle cx="8" cy="16" r="1.5"/>
+    <circle cx="16" cy="8" r="1.5"/>
+    <circle cx="12" cy="12" r="1.5"/>
+  </symbol>
+  
+  <!-- Globe -->
+  <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </symbol>
+</svg>
