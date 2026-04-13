@@ -23,7 +23,11 @@ function getAllImageFiles(dir, base = '') {
     if (item.isDirectory()) {
       results.push(...getAllImageFiles(fullPath, relPath));
     } else if (EXTENSIONS.some(ext => item.name.toLowerCase().endsWith(ext))) {
-      results.push(relPath);
+      if (item.name.toLowerCase() === 'apple-touch-icon.png') {
+        /* keep PNG for iOS; copied separately in run() */
+      } else {
+        results.push(relPath);
+      }
     } else if (item.name.toLowerCase().endsWith('.webp')) {
       results.push(relPath);
     }
@@ -75,6 +79,24 @@ async function run() {
     } catch (err) {
       console.error(`  ✗ ${relPath}:`, err.message);
     }
+  }
+
+  const svgRel = 'favicon.svg';
+  const svgSrc = path.join(srcDir, svgRel);
+  const svgDest = path.join(distDir, svgRel);
+  if (fs.existsSync(svgSrc)) {
+    fs.mkdirSync(path.dirname(svgDest), { recursive: true });
+    fs.copyFileSync(svgSrc, svgDest);
+    console.log('  ✓ favicon.svg (copied)');
+  }
+
+  const atRel = 'apple-touch-icon.png';
+  const atSrc = path.join(srcDir, atRel);
+  const atDest = path.join(distDir, atRel);
+  if (fs.existsSync(atSrc)) {
+    fs.mkdirSync(path.dirname(atDest), { recursive: true });
+    fs.copyFileSync(atSrc, atDest);
+    console.log('  ✓ apple-touch-icon.png (copied)');
   }
 
   // Create og-image.jpg for social sharing if missing (fixes 404/Server Error from missing og:image)

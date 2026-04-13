@@ -49,8 +49,15 @@ function buildPage(pageConfig) {
   html = html.replace(/<!-- INCLUDE: promo-banner -->/g, promoBanner);
 
   const baseForAssets = pageConfig.base || '';
-  const headExtras = `<link rel="icon" type="image/webp" href="${baseForAssets}images/nice88-favicon.webp">`;
-  html = html.replace(/<head([^>]*)>/, '<head$1>\n' + headExtras);
+  const headExtras = [
+    `<link rel="icon" href="${baseForAssets}images/favicon.svg" type="image/svg+xml">`,
+    `<link rel="icon" type="image/webp" sizes="32x32" href="${baseForAssets}images/nice88-favicon.webp">`,
+    `<link rel="apple-touch-icon" href="${baseForAssets}images/apple-touch-icon.png">`
+  ].join('\n    ');
+  html = html.replace(
+    '<meta charset="UTF-8">',
+    '<meta charset="UTF-8">\n    ' + headExtras
+  );
 
   const spritePath = path.join(config.srcDir, 'icons', 'sprite.svg');
   let bodyInject = '';
@@ -97,6 +104,7 @@ function copyRecursiveSync(src, dest) {
 
 (async function main() {
   if (!fs.existsSync(config.distDir)) fs.mkdirSync(config.distDir, { recursive: true });
+  await require('./generate-favicon.js')();
   config.pages.forEach(buildPage);
   copyAssets();
   await require('./optimize-images.js')();
