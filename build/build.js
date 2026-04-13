@@ -48,6 +48,16 @@ function buildPage(pageConfig) {
   const promoBanner = loadPartial('promo-banner');
   html = html.replace(/<!-- INCLUDE: promo-banner -->/g, promoBanner);
 
+  const gtmId = 'GTM-TS95HFR5';
+  const gtmHead = `    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${gtmId}');</script>
+    <!-- End Google Tag Manager -->`;
+  html = html.replace(/<head([^>]*)>/, '<head$1>\n' + gtmHead);
+
   const baseForAssets = pageConfig.base || '';
   const headExtras = [
     `<link rel="icon" href="${baseForAssets}images/favicon.svg" type="image/svg+xml">`,
@@ -59,12 +69,17 @@ function buildPage(pageConfig) {
     '<meta charset="UTF-8">\n    ' + headExtras
   );
 
+  const gtmNoscript = `    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->`;
+
   const spritePath = path.join(config.srcDir, 'icons', 'sprite.svg');
   let bodyInject = '';
   if (fs.existsSync(spritePath)) {
     bodyInject += '\n' + fs.readFileSync(spritePath, 'utf8');
   }
-  html = html.replace(/<body([^>]*)>/, '<body$1>\n' + bodyInject);
+  html = html.replace(/<body([^>]*)>/, '<body$1>\n' + gtmNoscript + '\n' + bodyInject);
 
   fs.writeFileSync(distPath, html, 'utf8');
   console.log(`✓ Built: ${pageConfig.src}`);
