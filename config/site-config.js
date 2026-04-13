@@ -23,8 +23,7 @@ const SITE_CONFIG = {
     { label: 'Payments', href: 'payments.html' },
     { label: 'Mobile App', href: 'mobile-app.html' },
     { label: 'About Us', href: 'about-us.html' },
-    { label: 'FAQ', href: 'faq.html' },
-    { label: 'News', href: 'news/index.html' }
+    { label: 'FAQ', href: 'faq.html' }
   ],
   footerColumns: [
     {

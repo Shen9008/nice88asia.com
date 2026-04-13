@@ -4,7 +4,6 @@
 
 User-agent: *
 Allow: /
-Allow: /news/
 Allow: /slots.html
 Allow: /live-casino.html
 Allow: /table-games.html

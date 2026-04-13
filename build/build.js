@@ -15,23 +15,7 @@ const config = {
     { src: 'payments.html', base: '' },
     { src: 'mobile-app.html', base: '' },
     { src: 'about-us.html', base: '' },
-    { src: 'faq.html', base: '' },
-    { src: 'news/index.html', base: '../' },
-    { src: 'news/online-casino-cambodia-guide.html', base: '../' },
-    { src: 'news/best-online-slots-cambodia.html', base: '../' },
-    { src: 'news/live-casino-cambodia-guide.html', base: '../' },
-    { src: 'news/sports-betting-cambodia-guide.html', base: '../' },
-    { src: 'news/mobile-casino-cambodia.html', base: '../' },
-    { src: 'news/baccarat-cambodia-guide.html', base: '../' },
-    { src: 'news/blackjack-cambodia-strategy.html', base: '../' },
-    { src: 'news/roulette-cambodia-guide.html', base: '../' },
-    { src: 'news/dragon-tiger-cambodia.html', base: '../' },
-    { src: 'news/deposit-methods-cambodia.html', base: '../' },
-    { src: 'news/safe-online-gambling-cambodia.html', base: '../' },
-    { src: 'news/casino-bonuses-cambodia.html', base: '../' },
-    { src: 'news/megaways-slots-cambodia.html', base: '../' },
-    { src: 'news/progressive-jackpots-cambodia.html', base: '../' },
-    { src: 'news/responsible-gambling-cambodia.html', base: '../' }
+    { src: 'faq.html', base: '' }
   ]
 };
 

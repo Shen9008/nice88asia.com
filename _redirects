@@ -2,5 +2,7 @@
 # Fixes: Duplicate without user-selected canonical, Page with redirect
 
 /index.html / 301
-/news/index.html /news/ 301
-/news /news/ 301
+# Legacy news section removed — send old URLs to homepage
+/news / 301
+/news/ / 301
+/news/* / 301
