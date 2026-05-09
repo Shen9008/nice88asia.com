@@ -546,6 +546,14 @@ body.nav-open .header {
 .content-page__content { max-width: 800px; margin: 0 auto; }
 .content-page__content h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
 
+.contact-section .content-page__content { text-align: center; }
+.contact-section .content-page__content p:last-child { margin-bottom: 0; }
+.contact-section__email {
+    font-size: 1.15rem;
+    font-weight: 600;
+    word-break: break-word;
+}
+
 /* FAQ */
 .faq-list { max-width: 700px; margin: 0 auto; }
 .faq-item {
