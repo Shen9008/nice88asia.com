@@ -23,11 +23,7 @@ function getAllImageFiles(dir, base = '') {
     if (item.isDirectory()) {
       results.push(...getAllImageFiles(fullPath, relPath));
     } else if (EXTENSIONS.some(ext => item.name.toLowerCase().endsWith(ext))) {
-      if (item.name.toLowerCase() === 'apple-touch-icon.png') {
-        /* keep PNG for iOS; copied separately in run() */
-      } else {
-        results.push(relPath);
-      }
+      results.push(relPath);
     } else if (item.name.toLowerCase().endsWith('.webp')) {
       results.push(relPath);
     }
@@ -90,28 +86,30 @@ async function run() {
     console.log('  ✓ favicon.svg (copied)');
   }
 
-  const atRel = 'apple-touch-icon.png';
+  const atRel = 'apple-touch-icon.webp';
   const atSrc = path.join(srcDir, atRel);
   const atDest = path.join(distDir, atRel);
   if (fs.existsSync(atSrc)) {
     fs.mkdirSync(path.dirname(atDest), { recursive: true });
     fs.copyFileSync(atSrc, atDest);
-    console.log('  ✓ apple-touch-icon.png (copied)');
+    console.log('  ✓ apple-touch-icon.webp (copied)');
   }
 
-  // Create og-image.jpg for social sharing if missing (fixes 404/Server Error from missing og:image)
+  // Create og-image.webp for social sharing if missing (fixes 404 from missing og:image)
   const distRoot = path.join(__dirname, '..', 'dist');
-  const ogImageDest = path.join(distRoot, 'og-image.jpg');
-  const ogImageSrc = path.join(srcDir, 'Hero Banner', 'Home.jpg');
-  if (!fs.existsSync(ogImageDest) && fs.existsSync(ogImageSrc)) {
+  const ogImageDest = path.join(distRoot, 'og-image.webp');
+  const ogImageSrc = [path.join(srcDir, 'hero-banner', 'home.webp'), path.join(srcDir, 'hero-banner', 'home.jpg')].find(
+    (p) => fs.existsSync(p)
+  );
+  if (!fs.existsSync(ogImageDest) && ogImageSrc) {
     try {
       await sharp(ogImageSrc)
         .resize(1200, 630, { fit: 'cover' })
-        .jpeg({ quality: 90 })
+        .webp({ quality: 90 })
         .toFile(ogImageDest);
-      console.log('✓ Created og-image.jpg for social sharing');
+      console.log('✓ Created og-image.webp for social sharing');
     } catch (err) {
-      console.warn('  Could not create og-image.jpg:', err.message);
+      console.warn('  Could not create og-image.webp:', err.message);
     }
   }
 
