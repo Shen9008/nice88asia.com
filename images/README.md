@@ -1,26 +1,38 @@
 # Nice88 Asia — image assets
 
-Raster sources live here as **JPG / PNG / WebP**. The build (`npm run build`) converts every raster file under `images/` to **optimized WebP** in `dist/images/` (same folder structure, `.webp` extension).
+All site visuals use **WebP** under kebab-case folders. The build (`npm run build`) copies and re-optimizes rasters into `dist/images/`.
 
-## Naming
+## Folder layout
 
-- **Hero banners** — `Hero Banner/<Page>.png` or `.jpg` → referenced in HTML as `images/Hero Banner/<Name>.webp` (URL-encoded spaces).
-- **Sports betting hero** — use `Sports Betting.png` (HTML: `Sports Betting.webp`). Avoid the old typo filename `Sportsboook`.
-- **Payments hero** — source file must be named **`Payment.png`** (not “Payments”) so the output matches `Payment.webp`.
-- **Table games hero** — source **`Promo.png`** → `Promo.webp`.
-- **Home cards** — `Home/Explore Our Games/` uses `Sports.png`, `Mobile.png`, etc., matching the `.webp` paths in `index.html`.
-- **Promotions** — folder **`Promotions & Bonuses`** with `Cashback`, `Free Spin`, `Welcome Bonus` assets.
-- **Logo** — `logo-nice88.png`; header/footer use `logo-nice88.webp` after build.
+| Folder | Use |
+|--------|-----|
+| `hero-banner/` | Page hero backgrounds (about, faq, home, live-casino, mobile, payments, slot, sports-betting, table-games) |
+| `home/explore-our-games/` | Homepage lobby category cards |
+| `home/promotions-bonuses/` | Homepage promotion tiles |
+| `slot/`, `live-casino/`, `sports/`, `table-games/`, `payments/`, `mobile/` | Product page game and feature tiles |
+| `logo-nice88.webp` | Header and footer brand mark |
+| `nice88-favicon.webp`, `apple-touch-icon.webp` | Favicon assets |
+| `blog-default.webp` | Blog fallback image |
 
-## Sizing (build)
+Legacy folders (`Hero Banner/`, `home/Explore Our Games/`) are migrated by `node build/sync-source-images.js` — do not add new assets there.
 
-Configured in `build/optimize-images.js`:
+## HTML references
 
-| Use | Max width | WebP quality |
-|-----|-----------|----------------|
-| `Hero Banner/` | 1680px | 78 |
-| Other tiles / cards | 720px | 82 |
-| `logo-nice88.png` | 260px | 86 |
-| `nice88-favicon.webp` | 64px | 92 |
+Use lowercase paths, e.g. `images/hero-banner/home.webp`, `images/slot/sweet-bonanza.webp`. Alt text is maintained in `build/image-alt-map.json` and applied with `node build/apply-image-alts.js`.
 
-SVG favicon (`favicon.svg`) and `apple-touch-icon.png` are copied as-is after raster generation.
+## Sizing (`build/optimize-images.js`)
+
+| Profile | Max width | Quality |
+|---------|-----------|---------|
+| `hero-banner/` | 1680px | 78 |
+| Cards / tiles | 720px | 82 |
+| `logo-nice88` | 260px | 86 |
+| Favicon | 64px | 92 |
+
+## Maintenance
+
+```bash
+node build/sync-source-images.js   # PNG → WebP in kebab paths
+node build/apply-image-alts.js     # Update alt text in HTML
+npm run build
+```

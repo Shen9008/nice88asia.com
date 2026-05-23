@@ -25,7 +25,7 @@ function getProfile(relPath) {
   const lower = norm.toLowerCase();
   const base = path.basename(lower);
 
-  if (lower.includes('hero banner')) return PROFILE_HERO;
+  if (lower.includes('hero-banner') || lower.includes('hero banner')) return PROFILE_HERO;
   if (base === 'logo-nice88.png') return PROFILE_LOGO;
   if (base === 'nice88-favicon.webp') return PROFILE_TINY;
 

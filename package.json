@@ -4,6 +4,8 @@
   "description": "Nice88 Asia - Online Casino & Sports Betting Website (nice88asia.com)",
   "scripts": {
     "build": "node build/build.js",
+    "images:sync": "node build/sync-source-images.js",
+    "images:alts": "node build/apply-image-alts.js",
     "serve": "npx serve dist -p 3000",
     "deploy": "npm run build && npx wrangler pages deploy dist --project-name=nice88asia",
     "sync": "node scripts/content-sync.js",
