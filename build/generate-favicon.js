@@ -1,31 +1,40 @@
 /**
- * Rasterize Nice88 Asia favicon from images/favicon.svg
+ * Build favicon and touch icon from images/logo-nice88.webp (or .png fallback).
  */
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
 const root = path.join(__dirname, '..');
-const svgPath = path.join(root, 'images', 'favicon.svg');
+function resolveLogoPath() {
+  const webp = path.join(root, 'images', 'logo-nice88.webp');
+  const png = path.join(root, 'images', 'logo-nice88.png');
+  if (fs.existsSync(webp)) return webp;
+  if (fs.existsSync(png)) return png;
+  return null;
+}
+
+/** Match <meta name="theme-color"> (#1a1a1f) for letterboxing */
+const ICON_BG = { r: 26, g: 26, b: 31, alpha: 1 };
 
 async function run() {
-  if (!fs.existsSync(svgPath)) {
-    console.warn('generate-favicon: favicon.svg missing, skipping.');
+  const logoPath = resolveLogoPath();
+  if (!logoPath) {
+    console.warn('generate-favicon: logo-nice88.webp (or .png) missing, skipping.');
     return;
   }
-  const svg = fs.readFileSync(svgPath);
 
-  await sharp(svg)
-    .resize(32, 32, { fit: 'contain', background: { r: 45, g: 45, b: 45, alpha: 0 } })
+  await sharp(logoPath)
+    .resize(32, 32, { fit: 'contain', background: ICON_BG })
     .webp({ quality: 92 })
     .toFile(path.join(root, 'images', 'nice88-favicon.webp'));
 
-  await sharp(svg)
-    .resize(180, 180, { fit: 'contain', background: { r: 45, g: 45, b: 45, alpha: 0 } })
-    .png({ compressionLevel: 9 })
-    .toFile(path.join(root, 'images', 'apple-touch-icon.png'));
+  await sharp(logoPath)
+    .resize(180, 180, { fit: 'contain', background: ICON_BG })
+    .webp({ quality: 92 })
+    .toFile(path.join(root, 'images', 'apple-touch-icon.webp'));
 
-  console.log('✓ Generated nice88-favicon.webp and apple-touch-icon.png from favicon.svg');
+  console.log('✓ Generated nice88-favicon.webp and apple-touch-icon.webp from', path.basename(logoPath));
 }
 
 module.exports = run;

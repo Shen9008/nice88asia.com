@@ -1,25 +1,85 @@
-<header class="header">
-    <div class="header__inner">
-        <a href="{{base}}/" class="logo">
-            <img src="{{base}}images/logo-nice88.webp" alt="Nice88 Asia" class="logo__img" width="260" height="238" decoding="async" fetchpriority="high">
-        </a>
-
-        <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
-            <span class="mobile-menu-toggle__bars" aria-hidden="true"></span>
-        </button>
-
-        <nav class="nav" id="site-nav" aria-label="Main navigation">
-            <ul class="nav__list">
-                <li><a href="{{base}}slots.html" class="nav__link">Slots</a></li>
-                <li><a href="{{base}}live-casino.html" class="nav__link">Live Casino</a></li>
-                <li><a href="{{base}}table-games.html" class="nav__link">Table Games</a></li>
-                <li><a href="{{base}}sports-betting.html" class="nav__link">Sports Betting</a></li>
-                <li><a href="{{base}}payments.html" class="nav__link">Payments</a></li>
-                <li><a href="{{base}}mobile-app.html" class="nav__link">Mobile</a></li>
-                <li><a href="{{base}}about-us.html" class="nav__link">About</a></li>
-                <li><a href="{{base}}faq.html" class="nav__link">FAQ</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-<div class="nav-overlay" aria-hidden="true"></div>
+<header class="header">
+    <div class="header__inner">
+        <a href="/" class="logo">
+            <img class="logo__img" src="{{base}}images/logo-nice88.webp" alt="Nice88 Asia" width="315" height="288" decoding="async" fetchpriority="high">
+        </a>
+
+        <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+            <span class="mobile-menu-toggle__bars" aria-hidden="true"></span>
+        </button>
+
+        <nav class="nav" id="site-nav" aria-label="Main navigation">
+            <div class="nav__panel-head">
+                <a href="{{base}}index.html" class="nav__panel-logo">
+                    <img class="nav__panel-logo-img" src="{{base}}images/logo-nice88.webp" alt="Nice88 Asia" width="315" height="288" decoding="async">
+                </a>
+                <button type="button" class="nav__drawer-close" aria-label="Close menu">
+                    <span class="nav__drawer-close-line" aria-hidden="true"></span>
+                </button>
+            </div>
+            <ul class="nav__list">
+                <li>
+                    <a href="{{base}}index.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-home"></use></svg>
+                        <span class="nav__link-label">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}slots.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-sparkles"></use></svg>
+                        <span class="nav__link-label">Slots</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}live-casino.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-live"></use></svg>
+                        <span class="nav__link-label">Live Casino</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}table-games.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-cards"></use></svg>
+                        <span class="nav__link-label">Table Games</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}sports-betting.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-football"></use></svg>
+                        <span class="nav__link-label">Sports Betting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}payments.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-money"></use></svg>
+                        <span class="nav__link-label">Payments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}mobile-app.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-mobile"></use></svg>
+                        <span class="nav__link-label">Mobile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}about-us.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-globe"></use></svg>
+                        <span class="nav__link-label">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}blogs/index.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-news"></use></svg>
+                        <span class="nav__link-label">Blogs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base}}faq.html" class="nav__link">
+                        <svg class="icon nav__link-icon" width="22" height="22" aria-hidden="true"><use href="#icon-book"></use></svg>
+                        <span class="nav__link-label">FAQ</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="nav-overlay" aria-hidden="true"></div>

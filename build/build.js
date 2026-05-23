@@ -15,7 +15,9 @@ const config = {
     { src: 'payments.html', base: '' },
     { src: 'mobile-app.html', base: '' },
     { src: 'about-us.html', base: '' },
-    { src: 'faq.html', base: '' }
+    { src: 'faq.html', base: '' },
+    { src: 'blog/index.html', base: '../' },
+    { src: 'blogs/index.html', base: '../' }
   ]
 };
 
@@ -61,9 +63,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   const baseForAssets = pageConfig.base || '';
   const headExtras = [
     `<meta name="theme-color" content="#1a1a1f">`,
-    `<link rel="icon" href="${baseForAssets}images/favicon.svg" type="image/svg+xml">`,
     `<link rel="icon" type="image/webp" sizes="32x32" href="${baseForAssets}images/nice88-favicon.webp">`,
-    `<link rel="apple-touch-icon" href="${baseForAssets}images/apple-touch-icon.png">`
+    `<link rel="apple-touch-icon" href="${baseForAssets}images/apple-touch-icon.webp">`
   ].join('\n    ');
   html = html.replace(
     '<meta charset="UTF-8">',
@@ -86,8 +87,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   console.log(`✓ Built: ${pageConfig.src}`);
 }
 
+function copyBlogArticleDirs() {
+  const blogSrc = path.join(config.srcDir, 'blogs');
+  const blogDist = path.join(config.distDir, 'blogs');
+  if (!fs.existsSync(blogSrc)) return;
+  for (const entry of fs.readdirSync(blogSrc, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      copyRecursiveSync(path.join(blogSrc, entry.name), path.join(blogDist, entry.name));
+      console.log(`✓ Copied: blogs/${entry.name}/`);
+    }
+  }
+}
+
 function copyAssets() {
-  const assets = ['css', 'js', 'icons', 'config'];
+  const assets = ['css', 'js', 'icons', 'config', 'assets'];
   assets.forEach(asset => {
     const src = path.join(config.srcDir, asset);
     const dist = path.join(config.distDir, asset);
@@ -97,7 +110,7 @@ function copyAssets() {
       console.log(`✓ Copied: ${asset}/`);
     }
   });
-  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.jpg'].forEach(file => {
+  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp'].forEach(file => {
     const src = path.join(config.srcDir, file);
     const dist = path.join(config.distDir, file);
     if (fs.existsSync(src)) {
@@ -105,6 +118,28 @@ function copyAssets() {
       console.log(`✓ Copied: ${file}`);
     }
   });
+}
+
+/** After WebP optimization, copy key assets back into /images so audits and relative hrefs match (see seo-task.md). */
+function syncOptimizedWebpToSource() {
+  const root = path.join(__dirname, '..');
+  const pairs = [
+    ['dist/images/logo-nice88.webp', 'images/logo-nice88.webp'],
+    ['dist/images/hero-banner/news.webp', 'images/hero-banner/news.webp']
+  ];
+  for (const [fromRel, toRel] of pairs) {
+    const from = path.join(root, fromRel);
+    const to = path.join(root, toRel);
+    if (fs.existsSync(from)) {
+      fs.mkdirSync(path.dirname(to), { recursive: true });
+      try {
+        fs.copyFileSync(from, to);
+        console.log(`✓ Synced ${toRel} for source parity`);
+      } catch (err) {
+        console.warn(`⚠ Skipped sync ${toRel}: ${err.message}`);
+      }
+    }
+  }
 }
 
 function copyRecursiveSync(src, dest) {
@@ -122,7 +157,9 @@ function copyRecursiveSync(src, dest) {
   if (!fs.existsSync(config.distDir)) fs.mkdirSync(config.distDir, { recursive: true });
   await require('./generate-favicon.js')();
   config.pages.forEach(buildPage);
+  copyBlogArticleDirs();
   copyAssets();
   await require('./optimize-images.js')();
+  syncOptimizedWebpToSource();
   console.log('\n✓ Build complete!');
 })();

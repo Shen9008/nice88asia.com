@@ -1,0 +1,11 @@
+const fs = require('fs');
+const h = fs.readFileSync(require('path').join(__dirname, '..', 'faq.html'), 'utf8');
+const q = 'Is Nice88 Asia legal?';
+const m = 'class="faq-item__question">' + q;
+console.log('marker idx', h.indexOf(m));
+const s = h.indexOf(m);
+const a = h.indexOf('class="faq-item__answer">', s);
+const cs = a + 'class="faq-item__answer">'.length;
+const ce = h.indexOf('</div>', cs);
+console.log('ans', a, 'content', cs, 'end', ce);
+console.log(JSON.stringify(h.slice(cs, ce)));

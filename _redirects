@@ -6,3 +6,7 @@
 /news / 301
 /news/ / 301
 /news/* / 301
+# Blog URL renamed to blogs
+/blog /blogs/ 301
+/blog/ /blogs/ 301
+/blog/* /blogs/:splat 301
