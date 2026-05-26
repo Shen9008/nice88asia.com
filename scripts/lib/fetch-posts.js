@@ -30,7 +30,7 @@ function getPostsSyncConfig(opts = {}) {
   if (rawKey === undefined || rawKey === null) {
     filterKey = DEFAULT_FILTER_KEY;
   } else {
-    filterKey = String(rawKey).trim();
+    filterKey = String(rawKey).trim() || DEFAULT_FILTER_KEY;
   }
 
   const applySiteFilter = Boolean(siteDomain && !skipFilter && filterKey);
@@ -63,6 +63,28 @@ function buildSamplePostsUrl(cfg, page = 1) {
 }
 
 /**
+ * Fail fast when SYNC_REQUIRE_SITE_FILTER=1 and site filter is missing or disabled.
+ * @param {object} cfg - from getPostsSyncConfig()
+ */
+function assertStrictSiteFilter(cfg) {
+  const require = /^1|true|yes$/i.test(String(process.env.SYNC_REQUIRE_SITE_FILTER || '').trim());
+  if (!require) return;
+
+  if (!cfg.siteDomain) {
+    throw new Error('SYNC_REQUIRE_SITE_FILTER: SITE_DOMAIN must be set.');
+  }
+  if (cfg.skipFilter) {
+    throw new Error('SYNC_REQUIRE_SITE_FILTER: SKIP_POSTS_SITE_FILTER must not be enabled.');
+  }
+  if (!cfg.filterKey) {
+    throw new Error('SYNC_REQUIRE_SITE_FILTER: site filter key is missing.');
+  }
+  if (!cfg.applySiteFilter) {
+    throw new Error('SYNC_REQUIRE_SITE_FILTER: site filter is not applied.');
+  }
+}
+
+/**
  * Fetches all published posts from Strapi REST `{base}/{POSTS_COLLECTION}`.
  * Optional site filter via POSTS_SITE_FILTER_KEY + SITE_DOMAIN unless SKIP_POSTS_SITE_FILTER is set.
  * @param {object} [opts]
@@ -72,6 +94,7 @@ function buildSamplePostsUrl(cfg, page = 1) {
  */
 async function fetchPosts(opts = {}) {
   const cfg = getPostsSyncConfig(opts);
+  assertStrictSiteFilter(cfg);
   const allPosts = [];
   let page = 1;
   const pageSize = 100;
@@ -104,7 +127,7 @@ async function fetchPosts(opts = {}) {
         ' Check STRAPI_API_URL and network/firewall. If the URL uses HTTPS from Node, TLS or proxy issues can also trigger this.';
       if (/localhost|127\.0\.0\.1/.test(cfg.base)) {
         hint =
-          ' Nothing is answering at that address — start Strapi locally or set STRAPI_API_URL to your hosted API (see .env.example). Scripts load `.env` then `.env.local` (`.env.local` overrides).';
+          ' Nothing is answering at that address — start Strapi locally or set STRAPI_API_URL to your hosted API (see .env.example).';
       }
       throw new Error(`Fetch failed to ${addr}${detail}: ${err.message}.${hint}`, { cause: err });
     }
@@ -134,4 +157,5 @@ module.exports = {
   fetchPosts,
   getPostsSyncConfig,
   buildSamplePostsUrl,
+  assertStrictSiteFilter,
 };

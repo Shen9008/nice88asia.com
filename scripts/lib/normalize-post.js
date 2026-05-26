@@ -1,5 +1,8 @@
 'use strict';
 
+const SITE = require('../../config/site-config.js');
+const BRAND_NAME = SITE.name || 'Nice88 Asia';
+
 const INTENT_GRADIENTS = {
   navigational:
     'linear-gradient(135deg, #0a0a0a 0%, rgba(212,175,55,0.25) 50%, #141414 100%)',
@@ -71,6 +74,24 @@ function absolutizeMediaUrl(url) {
 }
 
 /**
+ * Appends site brand to meta title when not already present (e.g. "Topic | Nice88 Asia").
+ * @param {string} metaTitle
+ * @param {string} [brandName]
+ * @returns {string}
+ */
+function withBrandMetaTitle(metaTitle, brandName = BRAND_NAME) {
+  const title = String(metaTitle || '').trim();
+  const brand = String(brandName || BRAND_NAME).trim();
+  if (!title) return brand;
+  if (!brand) return title;
+
+  const suffix = ` | ${brand}`;
+  if (title.toLowerCase().endsWith(suffix.toLowerCase())) return title;
+
+  return `${title}${suffix}`;
+}
+
+/**
  * Normalizes a Strapi post to site schema.
  * @param {object} strapiPost - Raw Strapi post (id, title, slug, shortDescription, publishedAt, etc.)
  * @param {object} [opts] - Options
@@ -92,7 +113,7 @@ function normalizePost(strapiPost, opts = {}) {
   return {
     slug,
     title,
-    meta_title: strapiPost.meta_title || title,
+    meta_title: withBrandMetaTitle(strapiPost.meta_title || title),
     meta_description: strapiPost.meta_description || strapiPost.shortDescription || '',
     focus_keyword: strapiPost.primary_keyword || strapiPost.focus_keyword || title,
     category,
@@ -150,4 +171,11 @@ function validatePost(normalized) {
   return true;
 }
 
-module.exports = { normalizePost, validatePost, formatDateISO, formatDateLong, extractCoverImageUrl };
+module.exports = {
+  normalizePost,
+  validatePost,
+  formatDateISO,
+  formatDateLong,
+  extractCoverImageUrl,
+  withBrandMetaTitle,
+};

@@ -10,9 +10,12 @@
   var MAX_PAGE = 99;
 
   function sortBlogs(a, b) {
-    var tb = new Date(b.synced_at || b.published_date || 0).getTime();
-    var ta = new Date(a.synced_at || a.published_date || 0).getTime();
-    if (tb !== ta) return tb - ta;
+    var pd = new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
+    if (pd !== 0) return pd;
+    var cu = new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
+    if (cu !== 0) return cu;
+    var sy = new Date(b.synced_at || 0).getTime() - new Date(a.synced_at || 0).getTime();
+    if (sy !== 0) return sy;
     return String(b.slug).localeCompare(String(a.slug));
   }
 

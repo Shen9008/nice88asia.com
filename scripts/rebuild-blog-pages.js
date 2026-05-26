@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { renderArticle } = require('./lib/render-article.js');
+const { withBrandMetaTitle } = require('./lib/normalize-post.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const BLOGS_JSON = path.join(ROOT, 'assets/data/blogs.json');
@@ -56,7 +57,7 @@ function entryToNormalized(entry) {
   return {
     slug: entry.slug,
     title: entry.title,
-    meta_title: entry.meta_title || entry.title,
+    meta_title: withBrandMetaTitle(entry.meta_title || entry.title),
     meta_description: entry.meta_description || entry.excerpt || '',
     focus_keyword: entry.focus_keyword || entry.title,
     category: entry.category || 'Informational',
