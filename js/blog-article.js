@@ -7,6 +7,8 @@
     var tb = new Date(b.synced_at || b.published_date || 0).getTime();
     var ta = new Date(a.synced_at || a.published_date || 0).getTime();
     if (tb !== ta) return tb - ta;
+    var cu = new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
+    if (cu !== 0) return cu;
     return String(b.slug).localeCompare(String(a.slug));
   }
 

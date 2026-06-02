@@ -29,6 +29,15 @@ function generateSitemap(opts = {}) {
     throw new Error(`Failed to read blogs.json: ${err.message}`);
   }
 
+  blogs.sort((a, b) => {
+    const syncB = new Date(b.synced_at || b.published_date || 0).getTime();
+    const syncA = new Date(a.synced_at || a.published_date || 0).getTime();
+    if (syncB !== syncA) return syncB - syncA;
+    const cu = new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
+    if (cu !== 0) return cu;
+    return String(b.slug).localeCompare(String(a.slug));
+  });
+
   let sitemap = fs.readFileSync(sitemapPath, 'utf8');
 
   const blogSectionStart = sitemap.indexOf(MARK_START);

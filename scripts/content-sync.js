@@ -36,12 +36,11 @@ function parseArgs(argv) {
 }
 
 function sortBlogsForIndex(a, b) {
-  const pd = new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
-  if (pd !== 0) return pd;
+  const syncB = new Date(b.synced_at || b.published_date || 0).getTime();
+  const syncA = new Date(a.synced_at || a.published_date || 0).getTime();
+  if (syncB !== syncA) return syncB - syncA;
   const cu = new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
   if (cu !== 0) return cu;
-  const sy = new Date(b.synced_at || 0).getTime() - new Date(a.synced_at || 0).getTime();
-  if (sy !== 0) return sy;
   return String(b.slug).localeCompare(String(a.slug));
 }
 
@@ -193,7 +192,9 @@ async function run() {
   const worklist = buildWorklist(strapiPosts, blogs, flags);
 
   if (worklist.length === 0) {
-    console.log('No articles to publish or refresh.');
+    blogs.sort(sortBlogsForIndex);
+    saveBlogsJson(blogs);
+    console.log('No articles to publish or refresh. blogs.json sorted by latest sync.');
     return;
   }
 
