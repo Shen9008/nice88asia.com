@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (prefersReducedMotion) return;
     var selectors = 'h1.hero__title, h1.section__title, h2.section__title, h2.listicle__title';
     document.querySelectorAll(selectors).forEach(function (heading) {
+      if (heading.closest('.hero-fluid') || heading.classList.contains('hero-fluid__title') || heading.classList.contains('section-organic__title')) {
+        return;
+      }
       var prev = heading.previousElementSibling;
       if (prev && prev.classList && prev.classList.contains('game-section__badge')) {
         return;

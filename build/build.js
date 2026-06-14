@@ -62,7 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   const baseForAssets = pageConfig.base || '';
   const headExtras = [
-    `<meta name="theme-color" content="#1a1a1f">`,
+    `<meta name="theme-color" content="#0F291B">`,
     `<link rel="icon" type="image/webp" sizes="32x32" href="${baseForAssets}images/nice88-favicon.webp">`,
     `<link rel="apple-touch-icon" href="${baseForAssets}images/apple-touch-icon.webp">`
   ].join('\n    ');
@@ -82,6 +82,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     bodyInject += '\n' + fs.readFileSync(spritePath, 'utf8');
   }
   html = html.replace(/<body([^>]*)>/, '<body$1>\n' + gtmNoscript + '\n' + bodyInject);
+
+  const premiumScript = pageConfig.base + 'js/premium.js';
+  if (!html.includes('premium.js')) {
+    html = html.replace(
+      /(<script defer src="[^"]*js\/main\.js"><\/script>)/,
+      '$1\n    <script defer src="' + premiumScript + '"></script>'
+    );
+  }
 
   fs.writeFileSync(distPath, html, 'utf8');
   console.log(`✓ Built: ${pageConfig.src}`);

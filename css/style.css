@@ -1,5 +1,7 @@
 /* Nice88 Asia - Main Stylesheet */
-/* Primary palette: purple gradient accents, dark grey surfaces */
+@import url('premium.css');
+
+/* Primary palette: premium light organic + legacy component compatibility */
 
 :root {
     --primary: #c084fc;
