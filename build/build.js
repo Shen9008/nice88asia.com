@@ -62,7 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   const baseForAssets = pageConfig.base || '';
   const headExtras = [
-    `<meta name="theme-color" content="#0F291B">`,
+    `<meta name="theme-color" content="#0a100a">`,
     `<link rel="icon" type="image/webp" sizes="32x32" href="${baseForAssets}images/nice88-favicon.webp">`,
     `<link rel="apple-touch-icon" href="${baseForAssets}images/apple-touch-icon.webp">`
   ].join('\n    ');
