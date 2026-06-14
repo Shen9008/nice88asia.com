@@ -981,3 +981,134 @@ body:not(.has-premium-nav) {
         transform: none;
     }
 }
+
+/* ─── Light-surface readability (default / non-hover) ─── */
+.section__title,
+.section-organic__title,
+.data-root__title,
+.contact-terminal__title,
+.steps__title,
+.game-section__title,
+.game-card__title,
+.promo-card__title,
+.lobby-card__title,
+.feature-organic__title,
+.feature-block__title,
+.infographic-item__value,
+.infographic-item__label,
+.step__body h4,
+.content-page__content h2,
+.content-page__content h3 {
+    color: var(--text-moss);
+}
+
+.section__intro,
+.section-organic__lead,
+.data-root__lead,
+.contact-terminal__lead,
+.by-numbers__lead,
+.feature-organic__text,
+.feature-block__text,
+.game-card__meta,
+.promo-card__meta,
+.lobby-card__meta,
+.infographic-item__label,
+.step__body p,
+.content-page__content,
+.content-page__content p,
+.content-page__content li {
+    color: var(--text-secondary);
+}
+
+.game-section__intro .game-section__title {
+    color: var(--text-moss);
+}
+
+.game-section__intro {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(15, 41, 27, 0.1);
+    box-shadow: var(--shadow-soft);
+}
+
+.step__body {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(15, 41, 27, 0.1);
+    box-shadow: var(--shadow-soft);
+}
+
+.step__body h4 {
+    color: var(--text-moss);
+}
+
+.step__body p {
+    color: var(--text-secondary);
+}
+
+.step__body a {
+    color: var(--text-moss);
+}
+
+.infographic-item__value {
+    color: var(--text-moss);
+}
+
+.provider-item {
+    color: var(--text-moss) !important;
+}
+
+.lobby-card,
+.game-card,
+.promo-card {
+    color: var(--text-moss);
+}
+
+.lobby-card__title,
+.game-card__title,
+.promo-card__title {
+    color: var(--text-moss);
+}
+
+.feature-organic:not(:hover):not(.is-active) .feature-organic__title {
+    color: var(--text-moss);
+}
+
+.feature-organic:not(:hover):not(.is-active) .feature-organic__text {
+    color: var(--text-secondary);
+}
+
+.feature-organic:not(:hover):not(.is-active) .feature-organic__text a {
+    color: #1a4d32;
+}
+
+/* Inner-page heroes keep light text on dark image overlay */
+.hero .hero__title,
+.hero h1.hero__title {
+    color: #ffffff;
+}
+
+.hero .hero__subtitle,
+.hero .hero__text,
+.hero .hero__highlights,
+.hero .hero__highlights li {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero .hero__stat-label {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Default links on light backgrounds */
+.section a:not(.btn):not(.btn-capsule):not(.game-card):not(.lobby-card):not(.promo-card):not(.nav-organic__cta):not(.nav-organic__link),
+.content-page__content a {
+    color: #1a4d32;
+}
+
+.section a:not(.btn):not(.btn-capsule):not(.game-card):not(.lobby-card):not(.promo-card):hover,
+.content-page__content a:hover {
+    color: var(--text-moss);
+}
+
+.announcement-banner a {
+    color: #1a4d32;
+    font-weight: 600;
+}
