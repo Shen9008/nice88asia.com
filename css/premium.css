@@ -676,26 +676,32 @@ a:hover {
 
 .data-root__node {
     opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.9s var(--ease-premium), transform 0.9s var(--ease-premium);
+    transition: opacity 0.9s var(--ease-premium);
 }
 
 .data-root__node.is-visible {
     opacity: 1;
-    transform: translateY(0);
+}
+
+.data-root__pill {
+    fill: rgba(10, 16, 10, 0.92);
+    stroke: rgba(57, 255, 20, 0.28);
+    stroke-width: 1;
 }
 
 .data-root__counter {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 14px;
     font-weight: 700;
     fill: var(--neon);
+    dominant-baseline: middle;
 }
 
 .data-root__counter-label {
     font-family: var(--font-sans);
-    font-size: 0.65rem;
-    fill: var(--text-muted);
+    font-size: 9px;
+    fill: var(--text-secondary);
+    dominant-baseline: middle;
 }
 
 @media (max-width: 768px) {
