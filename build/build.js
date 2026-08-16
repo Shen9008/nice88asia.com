@@ -126,7 +126,7 @@ function copyAssets() {
       console.log(`✓ Copied: ${asset}/`);
     }
   });
-  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp'].forEach(file => {
+  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt'].forEach(file => {
     const src = path.join(config.srcDir, file);
     const dist = path.join(config.distDir, file);
     if (fs.existsSync(src)) {
