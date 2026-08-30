@@ -116,7 +116,7 @@ function copyBlogArticleDirs() {
 }
 
 function copyAssets() {
-  const assets = ['css', 'js', 'icons', 'config', 'assets'];
+  const assets = ['css', 'js', 'icons', 'config', 'assets', 'authors'];
   assets.forEach(asset => {
     const src = path.join(config.srcDir, asset);
     const dist = path.join(config.distDir, asset);
@@ -126,7 +126,8 @@ function copyAssets() {
       console.log(`✓ Copied: ${asset}/`);
     }
   });
-  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt'].forEach(file => {
+  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt',
+   'responsible-gambling.html', 'privacy.html', 'terms.html'].forEach(file => {
     const src = path.join(config.srcDir, file);
     const dist = path.join(config.distDir, file);
     if (fs.existsSync(src)) {
