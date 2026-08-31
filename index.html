@@ -17,8 +17,10 @@
     <meta property="og:site_name" content="Nice88 Asia">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
+    <link rel="stylesheet" href="js/react/assets/style.css">
     <script defer src="js/main.js"></script>
     <script defer src="js/premium.js"></script>
+    <script type="module" src="js/react/aurora.js"></script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
       {"@id":"https://www.nice88asia.com/#organization","@type":"Organization","name":"Nice88 Asia","alternateName":["Nice88","Nice88 online casino","nice88asia"],"url":"https://www.nice88asia.com","logo":{"@type":"ImageObject","url":"https://www.nice88asia.com/images/logo-nice88.webp","width":315,"height":288},"image":"https://www.nice88asia.com/og-image.webp","description":"Nice88 (Nice88 Asia) offers online casino games, Nice88 slots, live dealers and sports betting for players across Asia. Official brand home at nice88asia.com.","foundingDate":"2009","contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"support@nice88asia.com","availableLanguage":["en"],"areaServed":{"@type":"Place","name":"Asia"}},"sameAs":["https://www.facebook.com/nice88asia","https://twitter.com/nice88asia","https://www.instagram.com/nice88asia","https://t.me/nice88asia"]},
@@ -32,13 +34,14 @@
     <!-- INCLUDE: header -->
 
     <section class="hero-fluid reveal">
+        <div class="hero-fluid__aurora" id="aurora-root" aria-hidden="true"></div>
         <div class="hero-fluid__inner">
             <div class="hero-fluid__copy">
-                <span class="hero-fluid__badge">Asia's Casino Since 2009</span>
+                <span class="hero-fluid__badge">Licensed · Since 2009</span>
                 <h1 class="hero-fluid__title">NICE88 <em>ASIA</em></h1>
-                <p class="hero-fluid__desc"><strong>Nice88</strong> is the online casino and sportsbook brand players across Asia have trusted since 2009. One account at <strong>nice88asia.com</strong> unlocks 3,500+ certified games — slots, live dealer tables, RNG table games and a full sportsbook — all backed by regional payments, fair-play certification, and human support around the clock.</p>
-                <div>
-                    <a href="https://reffpa.com/L?tag=d_5501238m_1236c_&amp;site=5501238&amp;ad=1236" target="_blank" rel="noopener noreferrer sponsored" class="btn-capsule"><span>Join Nice88 Asia</span></a>
+                <p class="hero-fluid__desc">3,500+ certified games, regional payments, and 24/7 support — one account for slots, live casino, and sports betting across Asia.</p>
+                <div class="hero-fluid__actions">
+                    <a href="https://reffpa.com/L?tag=d_5501238m_1236c_&amp;site=5501238&amp;ad=1236" target="_blank" rel="noopener noreferrer sponsored" class="btn-capsule btn-capsule--primary"><span>Join Nice88 Asia</span></a>
                     <a href="slots.html" class="btn-capsule btn-capsule--ghost"><span>Explore Games</span></a>
                 </div>
                 <div class="hero-fluid__stats">
@@ -58,7 +61,7 @@
         </div>
     </section>
 
-    <div class="announcement-banner reveal">🎁 New member offer: 100% deposit match up to $200 + 50 free spins. Wagering applies. <a href="https://reffpa.com/L?tag=d_5501238m_1236c_&amp;site=5501238&amp;ad=1236" target="_blank" rel="noopener noreferrer sponsored">View full terms →</a></div>
+    <div class="announcement-banner reveal" role="region" aria-label="Promotional offer"><span class="announcement-banner__tag">New member</span> 100% deposit match up to $200 + 50 free spins. Wagering applies. <a href="https://reffpa.com/L?tag=d_5501238m_1236c_&amp;site=5501238&amp;ad=1236" target="_blank" rel="noopener noreferrer sponsored">View full terms</a></div>
 
     <section class="section-organic reveal">
         <div class="section-organic__head">

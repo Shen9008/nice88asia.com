@@ -10,16 +10,29 @@
   /* Organic mobile nav */
   var toggle = document.querySelector('.nav-organic__toggle');
   var links = document.getElementById('nav-organic-links');
+
+  function setNavOpen(open) {
+    if (!links || !toggle) return;
+    links.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('nav-menu-open', open);
+  }
+
   if (toggle && links) {
     toggle.addEventListener('click', function () {
-      var open = links.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setNavOpen(!links.classList.contains('is-open'));
     });
     links.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
-        links.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
+        setNavOpen(false);
       });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && links.classList.contains('is-open')) {
+        setNavOpen(false);
+        toggle.focus();
+      }
     });
   }
 
@@ -158,7 +171,7 @@
       var email = form.querySelector('[name="email"]');
       var msg = form.querySelector('[name="message"]');
       var body = encodeURIComponent((msg && msg.value) || '');
-      var to = 'sparta4444@protonmail.com';
+      var to = 'support@nice88asia.com';
       var from = email && email.value ? encodeURIComponent(email.value) : '';
       window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent('Nice88 Asia inquiry') + '&body=' + body + (from ? '%0A%0AFrom:%20' + from : '');
     });

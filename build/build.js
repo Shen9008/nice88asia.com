@@ -16,10 +16,27 @@ const config = {
     { src: 'mobile-app.html', base: '' },
     { src: 'about-us.html', base: '' },
     { src: 'faq.html', base: '' },
+    { src: 'responsible-gambling.html', base: '' },
+    { src: 'privacy.html', base: '' },
+    { src: 'terms.html', base: '' },
+    { src: 'authors/jerome-liu.html', base: '../' },
     { src: 'blog/index.html', base: '../' },
     { src: 'blogs/index.html', base: '../' }
   ]
 };
+
+function ensurePremiumNav(html) {
+  return html.replace(/<body([^>]*)>/, (match, attrs) => {
+    if (/has-premium-nav/.test(attrs)) return match;
+    if (/class="([^"]*)"/.test(attrs)) {
+      return match.replace(/class="([^"]*)"/, 'class="has-premium-nav $1"');
+    }
+    if (/class='([^']*)'/.test(attrs)) {
+      return match.replace(/class='([^']*)'/, "class='has-premium-nav $1'");
+    }
+    return `<body class="has-premium-nav"${attrs}>`;
+  });
+}
 
 function loadPartial(name) {
   const filePath = path.join(config.partialsDir, `${name}.html`);
@@ -62,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   const baseForAssets = pageConfig.base || '';
   const headExtras = [
-    `<meta name="theme-color" content="#0a100a">`,
+    `<meta name="theme-color" content="#0a0814">`,
     `<link rel="icon" type="image/webp" sizes="32x32" href="${baseForAssets}images/nice88-favicon.webp">`,
     `<link rel="apple-touch-icon" href="${baseForAssets}images/apple-touch-icon.webp">`
   ].join('\n    ');
@@ -89,6 +106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if (fs.existsSync(spritePath)) {
     bodyInject += '\n' + fs.readFileSync(spritePath, 'utf8');
   }
+  html = ensurePremiumNav(html);
   html = html.replace(/<body([^>]*)>/, '<body$1>\n' + gtmNoscript + '\n' + bodyInject);
 
   const premiumScript = pageConfig.base + 'js/premium.js';
@@ -103,15 +121,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   console.log(`✓ Built: ${pageConfig.src}`);
 }
 
+function enhanceBlogHtml(html) {
+  html = ensurePremiumNav(html);
+  if (!html.includes('premium.css')) {
+    html = html.replace(
+      /(<link rel="stylesheet" href="\.\.\/\.\.\/css\/style\.css">)/,
+      '$1\n  <link rel="stylesheet" href="../../css/premium.css">'
+    );
+  }
+  if (!html.includes('premium.js')) {
+    html = html.replace(
+      /(<script defer src="\.\.\/\.\.\/js\/main\.js"><\/script>)/,
+      '$1\n  <script defer src="../../js/premium.js"></script>'
+    );
+  }
+  return html;
+}
+
 function copyBlogArticleDirs() {
   const blogSrc = path.join(config.srcDir, 'blogs');
   const blogDist = path.join(config.distDir, 'blogs');
   if (!fs.existsSync(blogSrc)) return;
   for (const entry of fs.readdirSync(blogSrc, { withFileTypes: true })) {
-    if (entry.isDirectory()) {
-      copyRecursiveSync(path.join(blogSrc, entry.name), path.join(blogDist, entry.name));
-      console.log(`✓ Copied: blogs/${entry.name}/`);
+    if (!entry.isDirectory()) continue;
+    const srcDir = path.join(blogSrc, entry.name);
+    const destDir = path.join(blogDist, entry.name);
+    if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+    for (const child of fs.readdirSync(srcDir)) {
+      const srcFile = path.join(srcDir, child);
+      const destFile = path.join(destDir, child);
+      if (child === 'index.html') {
+        const html = enhanceBlogHtml(fs.readFileSync(srcFile, 'utf8'));
+        fs.writeFileSync(destFile, html, 'utf8');
+      } else {
+        fs.copyFileSync(srcFile, destFile);
+      }
     }
+    console.log(`✓ Built: blogs/${entry.name}/`);
   }
 }
 
@@ -126,8 +172,7 @@ function copyAssets() {
       console.log(`✓ Copied: ${asset}/`);
     }
   });
-  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt',
-   'responsible-gambling.html', 'privacy.html', 'terms.html'].forEach(file => {
+  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt'].forEach(file => {
     const src = path.join(config.srcDir, file);
     const dist = path.join(config.distDir, file);
     if (fs.existsSync(src)) {
@@ -172,6 +217,12 @@ function copyRecursiveSync(src, dest) {
 
 (async function main() {
   if (!fs.existsSync(config.distDir)) fs.mkdirSync(config.distDir, { recursive: true });
+  try {
+    const { execSync } = require('child_process');
+    execSync('npm run build:react', { cwd: config.srcDir, stdio: 'inherit' });
+  } catch (err) {
+    console.warn('⚠ React build skipped or failed:', err.message);
+  }
   await require('./generate-favicon.js')();
   config.pages.forEach(buildPage);
   copyBlogArticleDirs();

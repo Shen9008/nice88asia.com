@@ -1,27 +1,27 @@
 /* Nice88 Asia - Main Stylesheet */
 
-/* Primary palette: premium light organic + legacy component compatibility */
+/* Primary palette: premium purple gradient + legacy component compatibility */
 
 :root {
-    --primary: #c084fc;
+    --primary: #a51dd7;
     --primary-dark: #7c3aed;
-    --primary-deep: #5b21b6;
-    --on-primary: #0f0f12;
-    --dark-blue: #25252d;
-    --dark-blue-alt: #32323c;
-    --accent: #FFFFFF;
-    --accent-muted: #e9e9ec;
-    --dark-bg: #1a1a1f;
-    --card-bg: #25252d;
-    --card-hover: #2e2e38;
-    --border-color: #3f3f4a;
-    --text-primary: #FFFFFF;
-    --text-secondary: #e4e4ea;
-    --text-muted: #9ca3af;
+    --primary-deep: #131ece;
+    --on-primary: #ffffff;
+    --dark-blue: #1a1528;
+    --dark-blue-alt: #110e1c;
+    --accent: #c084fc;
+    --accent-muted: #B497CF;
+    --dark-bg: #0a0814;
+    --card-bg: rgba(17, 14, 28, 0.92);
+    --card-hover: rgba(26, 21, 40, 0.98);
+    --border-color: rgba(165, 29, 215, 0.22);
+    --text-primary: #f0e8ff;
+    --text-secondary: #c4b5d8;
+    --text-muted: #8b7aa8;
     --success: #a855f7;
-    --gradient-primary: linear-gradient(135deg, #e9d5ff 0%, #a855f7 42%, #6d28d9 100%);
-    --gradient-dark: linear-gradient(180deg, #17171c 0%, #1f1f26 100%);
-    --primary-rgb: 168 85 247;
+    --gradient-primary: linear-gradient(135deg, #a51dd7 0%, #B497CF 50%, #131ece 100%);
+    --gradient-dark: linear-gradient(180deg, #0a0814 0%, #110e1c 100%);
+    --primary-rgb: 165 29 215;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -2279,7 +2279,7 @@ a.infographic-flow__item:hover .infographic-flow__text {
 .promo-banner__bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #2a2535 0%, #1f1d28 32%, #322d42 52%, #6d28d9 78%, #a855f7 100%);
+    background: linear-gradient(135deg, #110e1c 0%, #1a1528 32%, #2d1f4a 52%, #131ece 78%, #a51dd7 100%);
     background-size: 200% 200%;
     animation: promo-banner-gradient 5s ease infinite;
 }

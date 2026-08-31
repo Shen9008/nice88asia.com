@@ -4,6 +4,7 @@
   "description": "Nice88 Asia - Online Casino & Sports Betting Website (nice88asia.com)",
   "scripts": {
     "build": "node build/build.js",
+    "build:react": "vite build",
     "images:sync": "node build/sync-source-images.js",
     "images:import": "node build/import-donor-images.js",
     "images:audit": "node build/audit-card-images.js",
@@ -24,9 +25,16 @@
     "indexnow": "node build/submit-indexnow.js"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.2",
     "dotenv": "^16.4.7",
     "sharp": "^0.34.5",
+    "vite": "^7.1.3",
     "wrangler": "^4.82.2"
+  },
+  "dependencies": {
+    "ogl": "^1.0.11",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "engines": {
     "node": ">=14.0.0"
