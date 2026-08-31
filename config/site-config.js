@@ -10,7 +10,7 @@ const SITE_CONFIG = {
   locale: 'en',
   region: 'AS',
   currency: 'USD',
-  supportEmail: 'support@nice88asia.com',
+  supportEmail: 'sparta4444@protonmail.com',
   social: {
     facebook: 'https://www.facebook.com/nice88asia',
     twitter: 'https://twitter.com/nice88asia',

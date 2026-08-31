@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Bulk-patch embedded blog footers:
- *  - support@nice88asia.com (replace Protonmail)
+ *  - sparta4444@protonmail.com contact email
  *  - real Terms / Privacy / Responsible Gaming links
  *  - licence badge + updated RG copy (match partials/footer.html)
  *  - has-premium-nav + premium.css/js for site-wide nav
@@ -31,7 +31,7 @@ function patchBlogPost(filePath) {
   let changed = false;
 
   if (html.includes('sparta4444@protonmail.com')) {
-    html = html.replace(/sparta4444@protonmail\.com/g, 'support@nice88asia.com');
+    html = html.replace(/support@nice88asia\.com/g, 'sparta4444@protonmail.com');
     changed = true;
   }
 
@@ -48,7 +48,7 @@ function patchBlogPost(filePath) {
   const rgLink = '<a href="../../responsible-gambling.html">Responsible Gaming</a>';
   if (!html.includes('responsible-gambling.html">Responsible Gaming')) {
     html = html.replace(
-      /(<a href="mailto:support@nice88asia\.com">Contact<\/a>)/,
+      /(<a href="mailto:sparta4444@protonmail\.com">Contact<\/a>)/,
       `$1\n                    ${rgLink}`
     );
     changed = true;

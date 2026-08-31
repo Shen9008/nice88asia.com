@@ -171,7 +171,7 @@
       var email = form.querySelector('[name="email"]');
       var msg = form.querySelector('[name="message"]');
       var body = encodeURIComponent((msg && msg.value) || '');
-      var to = 'support@nice88asia.com';
+      var to = 'sparta4444@protonmail.com';
       var from = email && email.value ? encodeURIComponent(email.value) : '';
       window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent('Nice88 Asia inquiry') + '&body=' + body + (from ? '%0A%0AFrom:%20' + from : '');
     });
