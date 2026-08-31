@@ -83,6 +83,11 @@ async function run() {
     return;
   }
 
+  // Avoid stale title-case duplicates from prior builds breaking CDN asset maps.
+  if (fs.existsSync(distDir)) {
+    fs.rmSync(distDir, { recursive: true, force: true });
+  }
+
   const files = getAllImageFiles(srcDir);
   console.log(`Optimizing ${files.length} images to WebP...`);
 
