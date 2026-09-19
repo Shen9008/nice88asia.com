@@ -7,7 +7,7 @@ const ROOT = path.resolve(__dirname, '../..');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 const BLOGS_JSON_PATH = path.join(ROOT, 'assets/data/blogs.json');
 const SITE = require(path.join(ROOT, 'config/site-config.js'));
-const BLOG_BASE = `${String(SITE.baseUrl || 'https://www.nice88asia.com').replace(/\/$/, '')}/blogs/`;
+const BLOG_BASE = `${String(SITE.baseUrl || 'https://nice88asia.com').replace(/\/$/, '')}/blogs/`;
 
 const MARK_START = '  <!-- Blog Posts -->';
 const MARK_END = '  <!-- /Blog Posts -->';

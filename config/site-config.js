@@ -4,7 +4,7 @@
 const SITE_CONFIG = {
   name: 'Nice88 Asia',
   tagline: 'Trusted Online Casino & Sports Betting in Asia',
-  baseUrl: 'https://www.nice88asia.com',
+  baseUrl: 'https://nice88asia.com',
   /** Primary affiliate / registration CTA (hero buttons, promo banner, etc.) */
   affiliateUrl: 'https://reffpa.com/L?tag=d_5501238m_1236c_&site=5501238&ad=1236',
   locale: 'en',

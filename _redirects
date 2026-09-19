@@ -1,6 +1,7 @@
 # SEO: Consolidate duplicate URLs with 301 redirects
 # Fixes: Duplicate without user-selected canonical, Page with redirect
 
+# Apex domain (non-www) is canonical — redirect www host via Cloudflare Bulk Redirects if needed
 /index.html / 301
 # Legacy news section removed — send old URLs to homepage
 /news / 301

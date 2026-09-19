@@ -1,5 +1,5 @@
 # Nice88 Asia - robots.txt
-# https://www.nice88asia.com
+# https://nice88asia.com
 # Ensure no paths are blocked - fixes "Blocked by robots.txt" indexing issues
 
 User-agent: *
@@ -14,4 +14,4 @@ Allow: /about-us.html
 Allow: /faq.html
 
 # Sitemap location (required for search engines)
-Sitemap: https://www.nice88asia.com/sitemap.xml
+Sitemap: https://nice88asia.com/sitemap.xml

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const SITE = require('../config/site-config.js');
 
 const config = {
   srcDir: path.join(__dirname, '..'),
@@ -49,6 +50,65 @@ function replacePlaceholders(template, data) {
     result = result.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value);
   }
   return result;
+}
+
+function applySeoEnhancements(html) {
+  html = html.split('https://nice88asia.com').join(SITE.baseUrl);
+  html = html.split('https%3A%2F%2Fnice88asia.com').join('https%3A%2F%2Fnice88asia.com');
+
+  html = html.replace(
+    /<meta property="og:image:width" content="\d+"\s*\/?>/gi,
+    '<meta property="og:image:width" content="1200">'
+  );
+  html = html.replace(
+    /<meta property="og:image:height" content="\d+"\s*\/?>/gi,
+    '<meta property="og:image:height" content="630">'
+  );
+
+  if (!html.includes('twitter:card')) {
+    const ogTitle = (html.match(/<meta property="og:title" content="([^"]*)">/i) || [])[1]
+      || (html.match(/<title>([^<]*)<\/title>/i) || [])[1]
+      || '';
+    const ogDesc = (html.match(/<meta property="og:description" content="([^"]*)">/i) || [])[1]
+      || (html.match(/<meta name="description" content="([^"]*)">/i) || [])[1]
+      || '';
+    const ogImage = (html.match(/<meta property="og:image" content="([^"]*)">/i) || [])[1]
+      || `${SITE.baseUrl}/og-image.webp`;
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    const twitter = [
+      '<meta name="twitter:card" content="summary_large_image">',
+      `<meta name="twitter:title" content="${esc(ogTitle)}">`,
+      `<meta name="twitter:description" content="${esc(ogDesc)}">`,
+      `<meta name="twitter:image" content="${esc(ogImage)}">`
+    ].join('\n    ');
+    if (/<meta property="og:site_name"[^>]*>/i.test(html)) {
+      html = html.replace(
+        /(<meta property="og:site_name"[^>]*>)/i,
+        `$1\n    ${twitter}`
+      );
+    } else {
+      html = html.replace(/<\/head>/i, `    ${twitter}\n</head>`);
+    }
+  }
+
+  if (!html.includes('skip-link')) {
+    html = html.replace(
+      /<body([^>]*)>/i,
+      '<body$1>\n    <a class="skip-link" href="#main-content">Skip to content</a>'
+    );
+  }
+
+  return html;
+}
+
+function wrapMainLandmark(html) {
+  if (html.includes('id="main-content"')) return html;
+
+  const headerEnd = html.indexOf('</header>');
+  const footerStart = html.indexOf('<footer');
+  if (headerEnd === -1 || footerStart === -1 || footerStart <= headerEnd) return html;
+
+  return `${html.slice(0, headerEnd + 9)}\n\n    <main id="main-content">${html.slice(headerEnd + 9, footerStart)}\n    </main>\n${html.slice(footerStart)}`;
 }
 
 function buildPage(pageConfig) {
@@ -117,11 +177,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   }
 
+  html = applySeoEnhancements(html);
+  html = wrapMainLandmark(html);
+
   fs.writeFileSync(distPath, html, 'utf8');
   console.log(`✓ Built: ${pageConfig.src}`);
 }
 
 function enhanceBlogHtml(html) {
+  html = applySeoEnhancements(html);
   html = ensurePremiumNav(html);
   if (!html.includes('premium.css')) {
     html = html.replace(
@@ -172,7 +236,7 @@ function copyAssets() {
       console.log(`✓ Copied: ${asset}/`);
     }
   });
-  ['robots.txt', 'sitemap.xml', '_redirects', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt'].forEach(file => {
+  ['robots.txt', 'sitemap.xml', '_redirects', '_headers', 'og-image.webp', '707b02b55667e9cacad525d404e2382b.txt'].forEach(file => {
     const src = path.join(config.srcDir, file);
     const dist = path.join(config.distDir, file);
     if (fs.existsSync(src)) {

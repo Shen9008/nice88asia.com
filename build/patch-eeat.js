@@ -18,14 +18,14 @@ const TODAY     = '2026-08-30';
 const OLD_AUTHOR_ORG = `"author": {
       "@type": "Organization",
       "name": "Nice88 Asia",
-      "url": "https://www.nice88asia.com/"
+      "url": "https://nice88asia.com/"
     }`;
 
 const NEW_AUTHOR_PERSON = `"author": {
       "@type": "Person",
       "name": "Jerome Liu",
-      "url": "https://www.nice88asia.com/authors/jerome-liu/",
-      "sameAs": "https://www.nice88asia.com/authors/jerome-liu/",
+      "url": "https://nice88asia.com/authors/jerome-liu/",
+      "sameAs": "https://nice88asia.com/authors/jerome-liu/",
       "jobTitle": "Senior Casino Specialist & Content Writer"
     }`;
 
@@ -39,10 +39,10 @@ function patchBlogPost(filePath, slug) {
   let changed = false;
 
   // 1. Replace Organization author with Person
-  if (html.includes('"@type": "Organization",\n      "name": "Nice88 Asia",\n      "url": "https://www.nice88asia.com/"\n    }')) {
+  if (html.includes('"@type": "Organization",\n      "name": "Nice88 Asia",\n      "url": "https://nice88asia.com/"\n    }')) {
     html = html.replace(
-      '"@type": "Organization",\n      "name": "Nice88 Asia",\n      "url": "https://www.nice88asia.com/"\n    }',
-      '"@type": "Person",\n      "name": "Jerome Liu",\n      "url": "https://www.nice88asia.com/authors/jerome-liu/",\n      "sameAs": "https://www.nice88asia.com/authors/jerome-liu/",\n      "jobTitle": "Senior Casino Specialist & Content Writer"\n    }'
+      '"@type": "Organization",\n      "name": "Nice88 Asia",\n      "url": "https://nice88asia.com/"\n    }',
+      '"@type": "Person",\n      "name": "Jerome Liu",\n      "url": "https://nice88asia.com/authors/jerome-liu/",\n      "sameAs": "https://nice88asia.com/authors/jerome-liu/",\n      "jobTitle": "Senior Casino Specialist & Content Writer"\n    }'
     );
     changed = true;
   }
